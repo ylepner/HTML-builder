@@ -39,7 +39,12 @@ async function main() {
   }
 
   rl.close()
-  writeableStream.end()
 }
+
+rl.on("close", function () {
+  writeableStream.end()
+  console.log("\nBye👋 Have a nice day!");
+  process.exit(0);
+});
 
 main()
