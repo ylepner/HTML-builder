@@ -1,10 +1,12 @@
 const path = require('path');
 let copyFolder = path.join('04-copy-directory', 'files-copy')
 let originalFolder = path.join('04-copy-directory', 'files')
-const { readdir, lstat, mkdir, copyFile } = require('fs/promises');
+const { readdir, lstat, mkdir, copyFile, rm } = require('fs/promises');
+
 
 
 async function copyDir() {
+  await rm(copyFolder, { recursive: true, force: true })
   await mkdir(copyFolder, { recursive: true });
   const files = await readdir(originalFolder);
   for (let file of files) {
