@@ -2,7 +2,7 @@ const path = require('path');
 let folder = path.join('03-files-in-folder', 'secret-folder')
 const { readdir, lstat } = require('fs/promises');
 
-async function main() {
+async function outputFilesList() {
   const files = await readdir(folder);
   for (const fileOrDir of files) {
     const stat = await lstat(path.join(folder, fileOrDir));
@@ -13,4 +13,4 @@ async function main() {
   }
 }
 
-main()
+outputFilesList()
