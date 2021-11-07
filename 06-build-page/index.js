@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { mkdir, readFile, readdir, writeFile, rm, lstat } = require('fs/promises')
+const { mkdir, readFile, readdir, writeFile, rm, lstat, copyFile } = require('fs/promises')
 const path = require('path');
 const projectFolder = '06-build-page'
 const projectDistFolder = path.join(projectFolder, 'project-dist')
@@ -38,16 +38,23 @@ async function mergeCss() {
   }
 }
 
-async function copyAssetsFolder() {
-  await rm(copyFolder, { recursive: true, force: true })
-  await mkdir(copyFolder, { recursive: true });
-  const files = await readdir(originalFolder);
+async function copyDirectory(from, to) {
+  await mkdir(to, { recursive: true });
+  const files = await readdir(from);
   for (let file of files) {
-    const stat = await lstat(path.join(originalFolder, file));
+    const stat = await lstat(path.join(from, file));
     if (stat.isFile()) {
-      await copyFile(path.join(originalFolder, file), path.join(copyFolder, file));
+      await copyFile(path.join(from, file), path.join(to, file));
+    }
+    if (stat.isDirectory()) {
+      await copyDirectory(path.join(from, file), path.join(to, file))
     }
   }
+}
+
+async function copyAssetsFolder() {
+  await rm(copyFolder, { recursive: true, force: true })
+  copyDirectory(originalFolder, copyFolder)
 }
 
 
