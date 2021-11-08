@@ -8,8 +8,8 @@ const templateHtmlFile = path.join(projectFolder, 'template.html')
 const componentsFolder = path.join(projectFolder, 'components')
 const stylesFolder = path.join(projectFolder, 'styles')
 const bundleCSSFile = path.join(projectFolder, 'project-dist', 'style.css')
-let copyFolder = path.join(projectFolder, 'project-dist', 'assets')
-let originalFolder = path.join(projectFolder, 'assets')
+const copyFolder = path.join(projectFolder, 'project-dist', 'assets')
+const originalFolder = path.join(projectFolder, 'assets')
 
 async function replaceTemplate() {
   let templateHtmlFileContent = await readFile(templateHtmlFile, 'utf-8');
