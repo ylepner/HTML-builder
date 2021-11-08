@@ -1,5 +1,5 @@
 const path = require('path');
-let folder = path.join('03-files-in-folder', 'secret-folder')
+const folder = path.join('03-files-in-folder', 'secret-folder')
 const { readdir, lstat } = require('fs/promises');
 
 async function outputFilesList() {

@@ -1,6 +1,6 @@
 const path = require('path');
-let copyFolder = path.join('04-copy-directory', 'files-copy')
-let originalFolder = path.join('04-copy-directory', 'files')
+const copyFolder = path.join('04-copy-directory', 'files-copy')
+const originalFolder = path.join('04-copy-directory', 'files')
 const { readdir, lstat, mkdir, copyFile, rm } = require('fs/promises');
 
 

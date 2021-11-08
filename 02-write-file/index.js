@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const readline = require("readline");
 
-let writeableStream = fs.createWriteStream(path.join('02-write-file', 'hello.txt'));
+const writeableStream = fs.createWriteStream(path.join('02-write-file', 'hello.txt'));
 
 const rl = readline.createInterface({
   input: process.stdin,
